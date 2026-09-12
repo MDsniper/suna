@@ -1,46 +1,8 @@
 {
-  "name": "kortix",
+  "name": "project",
   "private": true,
   "scripts": {
-    "dev": "bash scripts/dev-local.sh",
-    "preview": "bash scripts/dev-local.sh --build",
-    "worktree": "bun run scripts/worktree/cli.ts",
-    "dev:dev-env": "pnpm --filter kortix-api dev:dev-env",
-    "dev:staging-env": "pnpm --filter kortix-api dev:staging-env",
-    "dev:prod-env": "pnpm --filter kortix-api dev:prod-env",
-    "test:envs": "bash scripts/e2e-secrets-envs.sh",
-    "dev:web": "pnpm --filter Kortix-Computer-Frontend dev",
-    "dev:web:staging-env": "pnpm --filter Kortix-Computer-Frontend dev:staging-env",
-    "dev:frontend": "pnpm --filter Kortix-Computer-Frontend dev",
-    "dev:mobile": "pnpm --filter ./apps/mobile dev",
-    "dev:desktop": "pnpm --filter @kortix/desktop dev:macos",
-    "dev:api": "pnpm --filter kortix-api dev",
-    "dev:sandbox": "docker build -f apps/sandbox/Dockerfile -t kortix/kortix-sandbox:dev .",
-    "dev:sandbox:build": "pnpm dev:sandbox",
-    "i18n:explicit-language": "node scripts/audit-explicit-language.mjs",
-    "i18n:translations": "node scripts/audit-translations.mjs",
-    "build": "pnpm -r run build",
-    "cli:bundle": "pnpm --filter @kortix/cli bundle",
-    "cli:bundle:all": "pnpm --filter @kortix/cli bundle:all",
-    "nuke": "bash scripts/nuke-local.sh",
-    "nuke:start": "bash scripts/nuke-local.sh --start",
-    "stripe:listen": "stripe listen --api-key \"$(dotenvx get STRIPE_SECRET_KEY -f apps/api/.env)\" --forward-to http://localhost:8008/v1/billing/webhooks/stripe",
-    "test": "pnpm -r --if-present test",
-    "test:packages": "pnpm --filter \"./packages/**\" --if-present test",
-    "test:apps": "pnpm --filter \"./apps/**\" --if-present test",
-    "test:suite": "pnpm --filter @kortix/tests test",
-    "lint:biome": "biome check .",
-    "lint:biome:fix": "biome check --write .",
-    "format": "biome format --write .",
-    "format:check": "biome format .",
-    "ci": "bash scripts/ci-local.sh pr",
-    "ci:pr": "bash scripts/ci-local.sh pr",
-    "ci:release": "bash scripts/ci-local.sh release",
-    "migrate": "pnpm --filter @kortix/db migrate",
-    "migrate:status": "pnpm --filter @kortix/db migrate:status",
-    "migrate:create": "node-pg-migrate create -m packages/db/migrations -j sql --migration-filename-format utc",
-    "migrate:generate": "pnpm --filter @kortix/db migrate:generate",
-    "migrate:lint": "pnpm --filter @kortix/db migrate:lint"
+    "postinstall": "git config core.hooksPath .githooks && chmod +x .githooks/*"
   },
   "devDependencies": {
     "@clack/prompts": "^0.7.0",
@@ -102,5 +64,6 @@
       "ajv@>=8.0.0 <8.18.0": "8.18.0",
       "markdown-it@>=0.0.0 <14.2.0": "14.2.0"
     }
-  }
+  },
+  "version": "1.0.0"
 }
